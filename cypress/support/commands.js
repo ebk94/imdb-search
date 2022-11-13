@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('searchBy', (currentCategory, nextCategory) => {
+    cy.xpath(`//div[text()="${currentCategory}"]`).click()
+    cy.get('[data-menu-id="navbar-search-category-select"]').should('be.visible')
+    cy.xpath(`//li/span[text()="${nextCategory}"]`).should('be.visible').click()
+})
+
+Cypress.Commands.add('search', (searchTerm) => {
+    cy.intercept('GET', '/find*').as('getResults')
+    
+    cy.get('#suggestion-search').click() .type(`${searchTerm}{enter}`)
+    
+    cy.wait('@getResults').its('response.statusCode').should('eq', 200)
+})
+
+Cypress.Commands.add('clickLink', (label) => {
+    cy.get('a').contains(label).click()
+})
