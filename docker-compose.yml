@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+    cypress:
+      build: ./cypress/ 
+      command: npx cypress run
+      volumes:
+      - ./:/var/app
+      - "cypress_node_modules:/var/app/node_modules"
+volumes:
+  cypress_node_modules: 
