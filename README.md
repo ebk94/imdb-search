@@ -21,6 +21,12 @@ You can run it in GUI by typing `npm run cy:open` in the terminal and this will 
 2. Start the **E2E Testing** in your desired browser
 3. Click on `imdb-search.cy.js` spec file
 
+## Running in [Docker](https://docs.docker.com/desktop/)
+In project's directory
+1. `docker-compose build`
+2. `docker-compose up`
+3. After finish `docker-compose down` 
+
 ## Answers to questions
 1. **What did you choose to test, and why?**
    - Decided to test general functionality of the search bar by checking for empty entry and zero-width space. As complex test cases can not be tested further if basic check emty resturns <font color="red">404 or internal error</font>
